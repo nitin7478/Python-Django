@@ -5,9 +5,18 @@ from django.http import HttpResponse
 # request handler
 # action 
 
+def calclulate():
+    x =1 
+    y = 2
+    return x
+
+
 def say_hello(request):
     #pull data from db 
     # transform data 
-    return HttpResponse("Hello World")
+    x = calclulate()
+    return render(request , 'hello.html' , {'name': 'nitin'})
+
+
 
 

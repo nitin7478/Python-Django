@@ -2,7 +2,7 @@
 
 Create virtual environment 
 ```
-    conda create -p venv python -y
+conda create -p venv python -y
 ```
 
 ```
@@ -39,13 +39,55 @@ urlpatterns = [
 ```
 
 Add those urls in urlpatterns urls.py folder inside storefront/urls.py
+
 ```
-urlpatterns = [
+from django.urls import include
+urlpatterns = 
+[
     path('admin/', admin.site.urls),
     path('playground/', include('playground.urls'))
     
 ]
 ```
+
+Setup deubug launch.json file
+```click on debug on left side and click on launch.json and select Django run configuration in top box.
+    It will launch.json file inside .vscode folder
+    Change Debug Server to Port 9000 (Your choice)
+    Open the file andd change configurations =>  args >  add argumaent "9000" , we are changing default server port
+
+
+Install django-debug-toolbar
+```
+pip install django-debug-toolbar
+```
+
+Add debug toolbar in list of installed apps inside project_name/settings.py
+```
+'django.contrib.staticfiles'
+"debug_toolbar"
+```
+
+Add path inside urlpatters in project_name/urls.py
+```
+path("__debug__/", include("debug_toolbar.urls")),
+```
+
+Add middleware inside project_name/settings.py
+```
+"debug_toolbar.middleware.DebugToolbarMiddleware"
+```
+
+Add below code in same file project_name/settings.py
+```
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+```
+
+
 
 
 
